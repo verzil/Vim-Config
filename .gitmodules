@@ -1,9 +1,0 @@
-<<<<<<< HEAD
-[submodule ".\\sources_non_forked\\YouCompleteMe"]
-	path = .\\sources_non_forked\\YouCompleteMe
-	url = https://github.com/Valloric/YouCompleteMe
-=======
-[submodule "sources_non_forked/easymotion"]
-	path = sources_non_forked/easymotion
-	url = https://github.com/Lokaltog/vim-easymotion
->>>>>>> d2cd0af8f43c200da4c83d49f9d06e999bc7f610
