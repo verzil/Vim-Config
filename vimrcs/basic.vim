@@ -120,7 +120,6 @@ set mat=2
 " No annoying sound on errors
 set noerrorbells
 set novisualbell
-set t_vb=
 set tm=500
 
 " Add a bit extra margin to the left
@@ -133,12 +132,13 @@ set foldcolumn=1
 " Enable syntax highlighting
 syntax enable
 
+set background=dark
 try
     colorscheme dracula
 catch
+    colorscheme peachpuff
 endtry
 
-set background=light
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -421,7 +421,6 @@ endfunction
 :inoremap <space><tab> <Esc>/[)}"'\]>]<CR>:nohl<CR>a
 :imap jj <Esc>
 :let mapleader = "\<Space>"
-:map \r :action ReformatCode<CR>
 
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber

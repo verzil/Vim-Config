@@ -38,7 +38,6 @@ Plugin 'tpope/vim-repeat'
 Plugin 'cohama/lexima.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'bling/vim-bufferline'
 Plugin 'moll/vim-node'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'sheerun/vim-polyglot'
@@ -48,6 +47,7 @@ Plugin 'mru.vim'
 Plugin 'YankRing.vim'
 Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'smancill/conky-syntax.vim'
 
 
 " The following are examples of different formats supported.
@@ -152,8 +152,12 @@ au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-airline config (force color)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:airline_theme="kolor"
-
+let g:airline_theme="laederon"
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tagbar#enabled = 0
+let g:airline#extensions#bufferline#enabled = 1
+set noshowmode
+set cmdheight =1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Easy motion
@@ -164,10 +168,10 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>w <Plug>(easymotion-w)
 map <Leader>b <Plug>(easymotion-b)
+
 map <Leader>, <Plug>(easymotion-f)
 map <Leader>. <Plug>(easymotion-F)
-nmap s<Plug>(easymotion-s)
-
+"nmap s <Plug>(easymotion-s)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -181,3 +185,13 @@ let g:syntastic_python_checkers=['pyflakes']
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:rainbow_active = 1
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Themes
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+try
+    colorscheme dracula
+endtry
+
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
