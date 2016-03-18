@@ -421,6 +421,7 @@ endfunction
 :inoremap <space><tab> <Esc>/[)}"'\]>]<CR>:nohl<CR>a
 :imap jj <Esc>
 :let mapleader = "\<Space>"
+nmap <leader>p  "+p
 
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
