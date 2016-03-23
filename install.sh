@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if ![ -d "~/.vim_runtime"]; then
-    echo 'runtime directory does not exit, making directory now'
+    echo 'runtime directory does not exist, making directory now'
     mkdir ~/.vim_runtime
 fi
 if ![ -d "~/.vim_runtime/Plugins" ]; then
@@ -25,15 +25,15 @@ endtry' > ~/.vimrc
 
 echo 'finished copying vimrcs files'
 echo 'now trying to install neccessary plugins'
-echo 'installing vundle.....'
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim_runtime/Plugins/Vundle.vim
+echo 'installing vim-plug...'
+curl -fLo ~/.vim_runtime/Plugins/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-echo 'vundle finished install'
+echo 'vim-plug finished install'
 
 while true; do
     read -p 'Do you wish to continue and install all plugins, (it may take a while) y/n     ' yn
     case $yn in
-        [Yy]*) vim +PluginInstall + qall; break;;
+        [Yy]*) vim +PlugInstall + qall; break;;
         [Nn]*) echo 'installation completed, please install plugin inside vim with :PluginInstall'; break;;
     esac
 done

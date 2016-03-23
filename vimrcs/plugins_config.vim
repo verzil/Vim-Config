@@ -189,7 +189,7 @@ au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-airline config (force color)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:airline_theme="laederon"
+let g:airline_theme="badwolf"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 0
 let g:airline#extensions#bufferline#enabled = 1
@@ -229,6 +229,7 @@ let g:rainbow_active = 1
 autocmd VimEnter * colorscheme dracula
 autocmd VimEnter * highlight Normal ctermbg=none
 autocmd VimEnter * highlight NonText ctermbg=none
+autocmd VimEnter * highlight LineNr ctermbg=none
 
 
 if exists('$TMUX')
