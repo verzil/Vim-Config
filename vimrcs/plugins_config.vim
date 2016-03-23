@@ -58,7 +58,7 @@ Plug 'vim-utils/vim-man'
 Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
 Plug 'airblade/vim-gitgutter'
 Plug 'plasticboy/vim-markdown', {'for': 'md'}
-Plug 'JamshedVesuna/vim-markdown-preview', {'for': 'md'}
+Plug 'JamshedVesuna/vim-markdown-preview', {'for': 'markdown'}
 Plug 'sgeb/vim-matlab', {'for': 'matlab'}
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
