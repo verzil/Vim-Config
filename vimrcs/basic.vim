@@ -133,12 +133,6 @@ set foldcolumn=1
 syntax enable
 
 set background=dark
-try
-    colorscheme dracula
-catch
-    colorscheme peachpuff
-endtry
-
 
 " Set extra options when running in GUI mode
 if has("gui_running")

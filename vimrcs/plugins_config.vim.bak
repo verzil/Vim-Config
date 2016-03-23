@@ -1,80 +1,69 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Improved:
-"       plugins are now enabled using [update]vim-plugs [prev]vundle, therefore it is
+"       plugins are now enabled using vundle, therefore it is
 "       automatically managed
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim-plugs now
+" => VUNDLE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-plugs now  setups
-" vim-plugs now  Script
+" Vundle setups
+" Vundle Script
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-source ~/.vim_runtime/Plugins/plug.vim
+set rtp+=~/.vim_runtime/Plugins/Vundle.vim/
 let path='~/.vim_runtime/Plugins'
-call plug#begin(path)
+call vundle#begin(path)
 " let Vundle manage Vundle, required
-Plug 'edkolev/tmuxline.vim'
-Plug 'Valloric/YouCompleteMe', {'do': './install --all'}
-Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
-Plug 'easymotion/vim-easymotion'
-Plug 'jelera/vim-javascript-syntax'
-Plug 'scrooloose/syntastic'
-Plug 'mileszs/ack.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'bling/vim-airline'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'terryma/vim-smooth-scroll'
-Plug 'mhinz/vim-startify'
-Plug 'ctrlpvim/ctrlp.vim.git'
-Plug 'majutsushi/tagbar'
-Plug 'godlygeek/tabular'
-Plug 'mattn/emmet-vim'
-Plug 'tpope/vim-repeat'
-Plug 'cohama/lexima.vim'
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'moll/vim-node'
-Plug 'maksimr/vim-jsbeautify'
-Plug 'sheerun/vim-polyglot'
-Plug 'gorodinskiy/vim-coloresque'
-Plug 'luochen1990/rainbow'
-Plug 'mru.vim'
-Plug 'YankRing.vim'
-Plug 'zenorocha/dracula-theme/', {'rtp': 'vim/'}
-Plug 'vim-airline/vim-airline-themes'
-Plug 'smancill/conky-syntax.vim'
-Plug 'xolox/vim-lua-inspect'
-Plug 'xolox/vim-misc'
-Plug 'scrooloose/nerdcommenter'
-Plug 'jcfaria/Nvim-R', {'for': 'R'}
-Plug 'rust-lang/rust.vim', {'for': 'rust'}
-Plug 'vim-utils/vim-man'
-Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
-Plug 'airblade/vim-gitgutter'
-Plug 'plasticboy/vim-markdown', {'for': 'md'}
-Plug 'JamshedVesuna/vim-markdown-preview', {'for': 'md'}
-Plug 'sgeb/vim-matlab', {'for': 'matlab'}
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/unite-outline'
-Plug 'Shougo/unite-session'
-Plug 'Shougo/neomru.vim'
-Plug 'Shougo/vimproc.vim'
-Plug 'thinca/vim-unite-history', {'do': 'make'}
-Plug 'Quramy/tsuquyomi'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-Plug 'ton/vim-bufsurf'
-
+Plugin 'gmarik/Vundle.vim'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'rdnetto/YCM-Generator'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'scrooloose/syntastic'
+Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-surround'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'mhinz/vim-startify'
+Plugin 'ctrlpvim/ctrlp.vim.git'
+Plugin 'majutsushi/tagbar'
+Plugin 'godlygeek/tabular'
+Plugin 'mattn/emmet-vim'
+Plugin 'tpope/vim-repeat'
+Plugin 'cohama/lexima.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'moll/vim-node'
+Plugin 'maksimr/vim-jsbeautify'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'gorodinskiy/vim-coloresque'
+Plugin 'luochen1990/rainbow'
+Plugin 'mru.vim'
+Plugin 'YankRing.vim'
+Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'smancill/conky-syntax.vim'
+Plugin 'xolox/vim-lua-inspect'
+Plugin 'xolox/vim-misc'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'jcfaria/Vim-R-plugin'
+Plugin 'rust-lang/rust.vim'
+Plugin 'vim-utils/vim-man'
+Plugin 'artur-shaik/vim-javacomplete2'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'JamshedVesuna/vim-markdown-preview'
+Plugin 'sgeb/vim-matlab'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 " All of your Plugins must be added before the following line
-call plug#end()            " required
+call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -123,22 +112,14 @@ endif
 """"""""""""""""""""""""""""""
 " => CTRL-P
 """"""""""""""""""""""""""""""
-"let g:ctrlp_working_path_mode = 0
+let g:ctrlp_working_path_mode = 0
 
-"map <leader>j :CtrlP<cr>
-"let g:ctrlp_map = '<c-f>'
-"map <c-b> :CtrlPBuffer<cr>
+let g:ctrlp_map = '<c-f>'
+map <leader>j :CtrlP<cr>
+map <c-b> :CtrlPBuffer<cr>
 
-"let g:ctrlp_max_height = 20
-"let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
-"
-
-""""""""""""""""""""""""""""""
-" => fzf
-""""""""""""""""""""""""""""""
-map <c-f> :FZF<cr>
-
-
+let g:ctrlp_max_height = 20
+let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
 
 
 """"""""""""""""""""""""""""""
@@ -226,9 +207,12 @@ let g:rainbow_active = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Themes
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd VimEnter * colorscheme dracula
-autocmd VimEnter * highlight Normal ctermbg=none
-autocmd VimEnter * highlight NonText ctermbg=none
+try
+    colorscheme dracula
+endtry
+
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
 
 
 if exists('$TMUX')
@@ -255,4 +239,3 @@ else
   map <C-k> <C-w>k
   map <C-l> <C-w>l
 endif
-
