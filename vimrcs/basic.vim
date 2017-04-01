@@ -18,9 +18,6 @@
 "    -> Helper functions
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ycm_server_keep_logfiles = 1
-let g:ycm_server_log_level = 'debug'
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -36,8 +33,8 @@ set autoread
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
-let mapleader = "/<Space>"
-let g:mapleader = "/<Space>"
+let mapleader = " "
+let g:mapleader = " "
 
 " Cursor to reflect on the current mode insert/normal
 :autocmd InsertEnter, InsertLeave * set cul!
@@ -80,7 +77,7 @@ endif
 set ruler
 
 " Height of the command bar
-set cmdheight=3
+set cmdheight=4
 
 " A buffer becomes hidden when it is abandoned
 set hid
@@ -220,7 +217,7 @@ map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
-map <leader>t<leader> :tabnext
+map <leader>t<leader> :tabnext<cr>
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
