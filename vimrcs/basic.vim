@@ -413,6 +413,7 @@ endfunction
 :imap jj <Esc>
 :let mapleader = "\<Space>"
 nmap <leader>p  "+p
+map <leader>y "+y
 
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
