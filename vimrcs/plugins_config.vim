@@ -18,75 +18,66 @@ let path='~/.vim_runtime/Plugins'
 call plug#begin(path)
 " let Vundle manage Vundle, required
 Plug 'heavenshell/vim-jsdoc'
+Plug 'Shougo/denite.nvim'
+Plug 'sheerun/vim-polyglot'
 Plug 'https://github.com/joshdick/onedark.vim'
-"Plug 'rakr/vim-one'
-Plug 'Quramy/tsuquyomi'
-Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'ts'] }
 Plug 'liuchengxu/space-vim-dark'
-Plug 'agreco/vim-citylights'
 Plug 'ryanoasis/vim-devicons'
 Plug 'pangloss/vim-javascript'
-"Plug 'othree/yajs.vim'
-"Plug 'othree/es.next.syntax.vim'
-"Plug 'bigfish/vim-js-context-coloring'
-"Plug 'jelera/vim-javascript-syntax'
 Plug 'edkolev/tmuxline.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'brookhong/ag.vim'
 Plug 'mxw/vim-jsx'
-Plug 'alampros/vim-styled-jsx'
-Plug 'roxma/nvim-completion-manager'
-Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
-Plug 'tyrannicaltoucan/vim-deep-space'
-Plug 'KeitaNakamura/highlighter.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'mileszs/ack.vim'
+Plug 'alampros/vim-styled-jsx', { 'for': ['javascript.jsx'] }
+Plug 'roxma/nvim-yarp'
+"Plug 'c0r73x/neotags.nvim', { 'do' : ':UpdateRemotePlugins' }
+Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
+Plug 'thosakwe/vim-flutter'
+"enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+
+" IMPORTANTE: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
+
+Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-tagprefix'
+Plug 'ncm2/ncm2-gtags'
+"Plug 'tyrannicaltoucan/vim-deep-space'
 Plug 'tpope/vim-fugitive'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'terryma/vim-smooth-scroll'
 Plug 'mhinz/vim-startify'
 Plug 'majutsushi/tagbar'
 Plug 'godlygeek/tabular'
 Plug 'mattn/emmet-vim', { 'for': ['javascript.jsx', 'html', 'css'] }
 Plug 'iamcco/markdown-preview.vim', { 'for': ['markdown'] }
-Plug 'tpope/vim-repeat'
-Plug 'tmhedberg/matchit'
 Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'moll/vim-node', { 'for': 'javascript' }
-"Plug 'sheerun/vim-polyglot'
-Plug 'luochen1990/rainbow'
+"Plug 'luochen1990/rainbow'
 Plug 'chrisbra/Colorizer'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'xolox/vim-lua-inspect'
-Plug 'xolox/vim-misc'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-utils/vim-man'
 Plug 'airblade/vim-gitgutter'
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/unite-outline'
-Plug 'Shougo/unite-session'
-Plug 'Shougo/neomru.vim'
-Plug 'Shougo/vimproc.vim'
-Plug 'thinca/vim-unite-history', {'do': 'make'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'ternjs/tern_for_vim', {'for': 'javascript', 'do' : 'npm install'}
-Plug 'ton/vim-bufsurf'
 Plug 'xuyuanp/nerdtree-git-plugin'
-Plug 'craigemery/vim-autotag'
-Plug 'jparise/vim-graphql'
+Plug 'jparise/vim-graphql', { 'for': ['javascript.jsx'] }
 Plug 'w0rp/ale'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'andymass/vim-matchup'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 " All of your Plugins must be added before the following line
 call plug#end()            " required
-filetype plugin on
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
  "
@@ -104,94 +95,17 @@ let g:user_emmet_settings = {
 \      'extends' : 'jsx',
 \  },
 \}
-""""""""""""""""""""""""""""""
-" =>  NerdCommenter
-""""""""""""""""""""""""""""""
-"let g:ft = ''
-"function! NERDCommenter_before()
-  "if &ft == 'vue'
-    "let g:ft = 'vue'
-    "let stack = synstack(line('.'), col('.'))
-    "if len(stack) > 0
-      "let syn = synIDattr((stack)[0], 'name')
-      "if len(syn) > 0
-        "exe 'setf ' . substitute(tolower(syn), '^vue_', '', '')
-      "endif
-    "endif
-  "endif
-"endfunction
-"function! NERDCommenter_after()
-  "if g:ft == 'vue'
-    "setf vue
-    "let g:ft = ''
-  "endif
-"endfunction
 
 """"""""""""""""""""""""""""""
 " => VUE
 """"""""""""""""""""""""""""""
 autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 
-""""""""""""""""""""""""""""""
-" => Typescript
-""""""""""""""""""""""""""""""
-
-"au BufRead,BufNewFile *.ts  setlocal filetype=typescript
-"let g:tsuquyomi_disable_default_mappings=1
-"autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
-
-""""""""""""""""""""""""""""""
-" => Neomake Linter
-""""""""""""""""""""""""""""""
-"let g:neomake_javascript_enabled_makers = ['eslint']
 
 
-"let g:python_host_prog='/usr/bin/python2'
-
-""""""""""""""""""""""""""""""
-" => Java Complete
-""""""""""""""""""""""""""""""
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
-nmap <F4> <Plug>(JavaComplete-Imports-Add)
-imap <F4> <Plug>(JavaComplete-Imports-Add)
-nmap <F5> <Plug>(JavaComplete-Imports-AddMissing)
-imap <F5> <Plug>(JavaComplete-Imports-AddMissing)
-nmap <F6> <Plug>(JavaComplete-Imports-RemoveUnused)
-imap <F6> <Plug>(JavaComplete-Imports-RemoveUnused)
-
-""""""""""""""""""""""""""""""
-" => MRU plugin
-""""""""""""""""""""""""""""""
-let MRU_Max_Entries = 400
-map <leader>f :MRU<CR>
-
-
-""""""""""""""""""""""""""""""
-" => YankRing
-""""""""""""""""""""""""""""""
-"if has("win16") || has("win32")
-    "" Don't do anything
-"else
-    "let g:yankring_history_dir = '~/.vim_runtime/temp_dirs/'
-"endif
-
-
-""""""""""""""""""""""""""""""
-" => CTRL-P
-""""""""""""""""""""""""""""""
-"let g:ctrlp_working_path_mode = 0
-
-"map <leader>j :CtrlP<cr>
-"let g:ctrlp_map = '<c-f>'
-"map <c-b> :CtrlPBuffer<cr>
-
-"let g:ctrlp_max_height = 20
-"let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
-"
-
-""""""""""""""""""""""""""""""
-" => fzf
-""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => FZF
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <c-f> :FZF<cr>
 
 
@@ -238,7 +152,7 @@ au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:airline_theme="violet"
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tagbar#enabled = 0
+let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#bufferline#enabled = 1
 set noshowmode
 set cmdheight =1
@@ -294,8 +208,8 @@ let g:rainbow_conf = {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set background=dark
 set termguicolors
-"colorscheme dracula
-colorscheme space-vim-dark
+colorscheme dracula
+"colorscheme space-vim-dark
 
 if exists('$TMUX')
   function! TmuxOrSplitSwitch(wincmd, tmuxdir)
@@ -322,24 +236,6 @@ else
   map <C-l> <C-w>l
 endif
 
-"NeoMake
-"autocmd! BufWritePost * Neomake
-
-"You Complete Me
-"let g:ycm_min_of_chars_for_completion = 1
-"let g:ycm_semantic_triggers =  {
-"\   'c' : ['->', '.'],
-"\   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
-"\             're!\[.*\]\s'],
-"\   'ocaml' : ['.', '#'],
-"\   'cpp,objcpp' : ['->', '.', '::'],
-"\   'perl' : ['->'],
-"\   'php' : ['->', '::'],
-"\   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-"\   'ruby' : ['.', '::'],
-"\   'lua' : ['.', ':'],
-"\   'erlang' : [':'],
-"\ }
 
 "JSX highlighting
 let g:jsx_ext_required = 0
@@ -349,22 +245,11 @@ let g:user_emmet_install_global=1
 autocmd FileType html,css,javascript.jsx,vue EmmetInstall
 set lazyredraw
 
-"DEOPLETE
-"let g:deoplete#enable_at_startup = 1
-"if !exists('g:deoplete#omni#input_patterns')
-  "let g:deoplete#omni#input_patterns = {}
-"endif
- "let g:deoplete#disable_auto_complete = 1
-"autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
- "deoplete tab-complete
  
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " tern
 autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
 
-"DEOPLETE TERN
-let g:tern_request_timeout = 1
-let g:tern_show_signature_in_pum = '0'  " This do disable full signature type on autocomplete
 
 "Add extra filetypes
 let g:tern#filetypes = [
@@ -451,3 +336,427 @@ let g:ale_linters = {
 nmap <C-q> <PageDown>
 nmap <C-w> <PageUp>
 nnoremap Q <nop>
+tnoremap <Esc> <C-\><C-n>
+
+
+nmap <leader>. :TagbarToggle<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" New version:
+"   made to use vundle
+"
+" Sections:
+"    -> General
+"    -> VIM user interface
+"    -> Colors and Fonts
+"    -> Files and backups
+"    -> Text, tab and indent related
+"    -> Visual mode related
+"    -> Moving around, tabs and buffers
+"    -> Status line
+"    -> Editing mappings
+"    -> vimgrep searching and cope displaying
+"    -> Spell checking
+"    -> Misc
+"    -> Helper functions
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Sets how many lines of history VIM has to remember
+set history=1000
+
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
+
+" Set to auto read when a file is changed from the outside
+set autoread
+
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = " "
+let g:mapleader = " "
+
+" Cursor to reflect on the current mode insert/normal
+:autocmd InsertEnter, InsertLeave * set cul!
+
+
+" Fast saving
+nnoremap <leader>w :w!<cr>
+
+" :W sudo saves the file
+" (useful for handling the permission-denied error)
+command W w !sudo tee % > /dev/null
+
+"Setting color to xterm
+
+let &t_AB="\e[48;5;%dm"
+let &t_AF="\e[38;5;%dm"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => VIM user interface
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set 7 lines to the cursor - when moving vertically using j/k
+set so=7
+
+" Avoid garbled characters in Chinese language windows OS
+let $LANG='en'
+set langmenu=en
+source $VIMRUNTIME/delmenu.vim
+
+" Turn on the WiLd menu
+set wildmenu
+
+" Ignore compiled files
+set wildignore=*.o,*~,*.pyc
+if has("win16") || has("win32")
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+else
+    set wildignore+=.git\*,.hg\*,.svn\*
+endif
+
+"Always show current position
+set ruler
+
+" Height of the command bar
+set cmdheight=1
+
+" A buffer becomes hidden when it is abandoned
+set hid
+
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+
+" In many terminal emulators the mouse works just fine, thus enable it.
+if has('mouse')
+  set mouse=a
+endif
+
+" Ignore case when searching
+set ignorecase
+
+" When searching try to be smart about cases
+set smartcase
+
+" Highlight search results
+set hlsearch
+
+" Makes search act like search in modern browsers
+set incsearch
+
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+
+" For regular expressions turn magic on
+set magic
+
+" Show matching brackets when text indicator is over them
+set showmatch
+" How many tenths of a second to blink when matching brackets
+set mat=2
+
+" No annoying sound on errors
+set noerrorbells
+set novisualbell
+set tm=500
+
+" Add a bit extra margin to the left
+set foldcolumn=1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Colors and Fonts
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable syntax highlighting
+syntax enable
+
+set background=dark
+
+" Set extra options when running in GUI mode
+if has("gui_running")
+    set guioptions-=T
+    set guioptions-=e
+    set t_Co=256
+    set guitablabel=%M\ %t
+endif
+
+" Set utf8 as standard encoding and en_US as the standard language
+set encoding=utf8
+
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Files, backups and undo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Turn backup off, since most stuff is in SVN, git et.c anyway...
+set nobackup
+set nowb
+set noswapfile
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Text, tab and indent related
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use spaces instead of tabs
+set expandtab
+
+" Be smart when using tabs ;)
+set smarttab
+
+" 1 tab == 4 spaces
+set shiftwidth=4
+set tabstop=4
+
+" Linebreak on 500 characters
+set lbr
+set tw=500
+
+set ai "Auto indent
+set si "Smart indent
+set wrap "Wrap lines
+
+
+""""""""""""""""""""""""""""""
+" => Visual mode related
+""""""""""""""""""""""""""""""
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :call VisualSelection('f', '')<CR>
+vnoremap <silent> # :call VisualSelection('b', '')<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Moving around, tabs, windows and buffers
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Treat long lines as break lines (useful when moving around in them)
+map j gj
+map k gk
+
+" Map <space><space> to / (search) and Ctrl<space> to ? (backwards search)
+nnoremap <space><space> /
+nnoremap <c-space> ?
+
+" Disable highlight when <leader><cr> is pressed
+map <silent> <leader><cr> :noh<cr>
+
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Close the current buffer
+map <leader>bd :Bclose<cr>
+
+" Close all the buffers
+map <leader>ba :1,1000 bd!<cr>
+
+" Useful mappings for managing tabs
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove
+map <leader>t<leader> :tabnext<cr>
+
+" Let 'tl' toggle between this and the last accessed tab
+let g:lasttab = 1
+nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
+au TabLeave * let g:lasttab = tabpagenr()
+
+
+" Opens a new tab with the current buffer's path
+" Super useful when editing files in the same directory
+map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+
+" Switch CWD to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+" Specify the behavior when switching between buffers
+try
+  set switchbuf=useopen,usetab,newtab
+  set stal=2
+catch
+endtry
+
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+" Remember info about open buffers on close
+set viminfo^=%
+
+
+""""""""""""""""""""""""""""""
+" => Status line
+""""""""""""""""""""""""""""""
+" Always show the status line
+set laststatus=2
+
+" Format the status line
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Editing mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Remap VIM 0 to first non-blank character
+map 0 ^
+
+" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+if has("mac") || has("macunix")
+  nmap <D-j> <M-j>
+  nmap <D-k> <M-k>
+  vmap <D-j> <M-j>
+  vmap <D-k> <M-k>
+endif
+
+" Delete trailing white space on save, useful for Python and CoffeeScript ;)
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
+autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.coffee :call DeleteTrailingWS()
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Ack searching and cope displaying
+"    requires ack.vim - it's much better than vimgrep/grep
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" When you press gv you Ack after the selected text
+vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
+
+" Open Ack and put the cursor in the right position
+map <leader>g :Ack
+
+" When you press <leader>r you can search and replace the selected text
+vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
+
+" Do :help cope if you are unsure what cope is. It's super useful!
+"
+" When you search with Ack, display your results in cope by doing:
+"   <leader>cc
+"
+" To go to the next search result do:
+"   <leader>n
+"
+" To go to the previous search results do:
+"   <leader>p
+"
+map <leader>cc :botright cope<cr>
+map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
+map <leader>n :cn<cr>
+map <leader>p :cp<cr>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Spell checking
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Pressing ,ss will toggle and untoggle spell checking
+map <leader>ss :setlocal spell!<cr>
+
+" Shortcuts using <leader>
+map <leader>sn ]s
+map <leader>sp [s
+map <leader>sa zg
+map <leader>s? z=
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Misc
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Remove the Windows ^M - when the encodings gets messed up
+noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
+" Quickly open a buffer for scribble
+map <leader>q :e ~/buffer<cr>
+
+" Quickly open a markdown buffer for scribble
+map <leader>x :e ~/buffer.md<cr>
+
+" Toggle paste mode on and off
+map <leader>pp :setlocal paste!<cr>
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Helper functions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! CmdLine(str)
+    exe "menu Foo.Bar :" . a:str
+    emenu Foo.Bar
+    unmenu Foo
+endfunction
+
+function! VisualSelection(direction, extra_filter) range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", '\\/.*$^~[]')
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    if a:direction == 'b'
+        execute "normal ?" . l:pattern . "^M"
+    elseif a:direction == 'gv'
+        call CmdLine("Ag \"" . l:pattern . "\" " )
+    elseif a:direction == 'replace'
+        call CmdLine("%s" . '/'. l:pattern . '/')
+    elseif a:direction == 'f'
+        execute "normal /" . l:pattern . "^M"
+    endif
+
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfunction
+
+
+" Returns true if paste mode is enabled
+function! HasPaste()
+    if &paste
+        return 'PASTE MODE  '
+    en
+    return ''
+endfunction
+
+" Don't close window, when deleting a buffer
+command! Bclose call <SID>BufcloseCloseIt()
+function! <SID>BufcloseCloseIt()
+   let l:currentBufNum = bufnr("%")
+   let l:alternateBufNum = bufnr("#")
+
+   if buflisted(l:alternateBufNum)
+     buffer #
+   else
+     bnext
+   endif
+
+   if bufnr("%") == l:currentBufNum
+     new
+   endif
+
+   if buflisted(l:currentBufNum)
+     execute("bdelete! ".l:currentBufNum)
+   endif
+endfunction
+
+" added new binding for self
+:inoremap <space><tab> <Esc>/[)}"'\]>]<CR>:nohl<CR>a
+:imap jj <Esc>
+:let mapleader = "\<Space>"
+nmap <leader>p  "+p
+map <leader>y "+y
+
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
