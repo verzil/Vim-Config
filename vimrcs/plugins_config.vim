@@ -458,11 +458,18 @@ autocmd BufEnter * call ncm2#enable_for_buffer()
 " IMPORTANTE: :help Ncm2PopupOpen for more information
 set completeopt=noinsert,menuone,noselect
 
+Plug 'natebosch/vim-lsc'
+Plug 'natebosch/vim-lsc-dart'
+Plug 'ncm2/ncm2-neoinclude' | Plug 'Shougo/neoinclude.vim'
 Plug 'ncm2/ncm2'
 Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-tagprefix'
 Plug 'ncm2/ncm2-gtags'
+Plug 'jsfaint/gen_tags.vim'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'wellle/tmux-complete.vim'
 "Plug 'tyrannicaltoucan/vim-deep-space'
 Plug 'tpope/vim-fugitive'
 Plug 'bling/vim-airline'
@@ -620,11 +627,21 @@ let g:rainbow_conf = {
 \}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Omni complete functions
+" => TMUX complete
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:tmuxcomplete#asyncomplete_source_options = {
+            \ 'name':      'tmuxcomplete',
+            \ 'whitelist': ['*'],
+            \ 'config': {
+            \     'splitmode':      'words',
+            \     'filter_prefix':   1,
+            \     'show_incomplete': 1,
+            \     'sort_candidates': 0,
+            \     'scrollback':      0,
+            \     'truncate':        0
+            \     }
+            \ }"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Themes
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set background=dark
@@ -757,6 +774,8 @@ nmap <C-q> <PageDown>
 nmap <C-w> <PageUp>
 nnoremap Q <nop>
 tnoremap <Esc> <C-\><C-n>
+
+
 
 
 nmap <leader>. :TagbarToggle<cr>
