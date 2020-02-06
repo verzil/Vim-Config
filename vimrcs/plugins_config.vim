@@ -442,12 +442,10 @@ Plug 'sheerun/vim-polyglot'
 Plug 'https://github.com/joshdick/onedark.vim'
 Plug 'liuchengxu/space-vim-dark'
 Plug 'ryanoasis/vim-devicons'
-Plug 'pangloss/vim-javascript'
 Plug 'edkolev/tmuxline.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'brookhong/ag.vim'
 Plug 'mxw/vim-jsx'
-Plug 'alampros/vim-styled-jsx', { 'for': ['javascript.jsx'] }
 Plug 'roxma/nvim-yarp'
 "Plug 'c0r73x/neotags.nvim', { 'do' : ':UpdateRemotePlugins' }
 Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
@@ -646,8 +644,8 @@ let g:tmuxcomplete#asyncomplete_source_options = {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set background=dark
 set termguicolors
-colorscheme dracula
-"colorscheme space-vim-dark
+"colorscheme dracula
+colorscheme space-vim-dark
 
 if exists('$TMUX')
   function! TmuxOrSplitSwitch(wincmd, tmuxdir)
@@ -703,7 +701,7 @@ let g:tern#command = ["tern"]
 let g:tern#arguments = ["--persistent"]
 
 " SOME fixes
-"set synmaxcol=200
+set synmaxcol=200
 set ttyfast " u got a fast terminal
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
 
@@ -776,6 +774,41 @@ nnoremap Q <nop>
 tnoremap <Esc> <C-\><C-n>
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Nerd Tree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" suppress the annoying 'match x of y', 'The only match' and 'Pattern not
+" found' messages
+set shortmess+=c
+
+" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
+inoremap <c-c> <ESC>
+
+" When the <Enter> key is pressed while the popup menu is visible, it only
+" hides the menu. Use this mapping to close the menu and also start a new
+" line.
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+
+" Use <TAB> to select the popup menu:
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" wrap existing omnifunc
+" Note that omnifunc does not run in background and may probably block the
+" editor. If you don't want to be blocked by omnifunc too often, you could
+" add 180ms delay before the omni wrapper:
+"  'on_complete': ['ncm2#on_complete#delay', 180,
+"               \ 'ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
+au User Ncm2Plugin call ncm2#register_source({
+        \ 'name' : 'css',
+        \ 'priority': 9,
+        \ 'subscope_enable': 1,
+        \ 'scope': ['css','scss'],
+        \ 'mark': 'css',
+        \ 'word_pattern': '[\w\-]+',
+        \ 'complete_pattern': ':\s*',
+        \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
+        \ })
 
 
 nmap <leader>. :TagbarToggle<cr>
