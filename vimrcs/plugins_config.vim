@@ -948,5 +948,6 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 nnoremap <silent> <space>l  :<C-u>CocList<CR>
+nnoremap <silent> U  :<C-u>UndotreeToggle<CR>
 
 let g:lsc_auto_map = v:true
