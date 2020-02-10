@@ -448,12 +448,8 @@ Plug 'roxma/nvim-yarp'
 Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm ci'}
 Plug 'thosakwe/vim-flutter'
 "enable ncm2 for all buffers
-
-
 Plug 'natebosch/vim-lsc'
 Plug 'natebosch/vim-lsc-dart'
-
-
 Plug 'tpope/vim-fugitive'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-surround'
@@ -462,7 +458,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'mhinz/vim-startify'
 Plug 'majutsushi/tagbar'
 Plug 'godlygeek/tabular'
-Plug 'mattn/emmet-vim', { 'for': ['javascript.jsx', 'html', 'css'] }
+Plug 'mattn/emmet-vim', { 'for': ['javascript.jsx', 'html', 'css', 'vue'] }
 Plug 'iamcco/markdown-preview.vim', { 'for': ['markdown'] }
 Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
@@ -473,8 +469,9 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-utils/vim-man'
 Plug 'airblade/vim-gitgutter'
+Plug 'mbbill/undotree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-Plug 'ternjs/tern_for_vim', {'for': 'javascript', 'do' : 'npm ci'}
+"Plug 'ternjs/tern_for_vim', {'for': 'javascript', 'do' : 'npm ci'}
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'jparise/vim-graphql', { 'for': ['javascript.jsx'] }
 Plug 'w0rp/ale'
@@ -526,7 +523,10 @@ let g:user_emmet_settings = {
 """"""""""""""""""""""""""""""
 " => VUE
 """"""""""""""""""""""""""""""
-autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+"autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+let g:LanguageClient_serverCommands = {
+    \ 'vue': ['vls']
+    \ }
 
 
 
@@ -631,24 +631,24 @@ let g:rainbow_conf = {
 " => TMUX complete
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-let g:tmuxcomplete#asyncomplete_source_options = {
-            \ 'name':      'tmuxcomplete',
-            \ 'whitelist': ['*'],
-            \ 'config': {
-            \     'splitmode':      'words',
-            \     'filter_prefix':   1,
-            \     'show_incomplete': 1,
-            \     'sort_candidates': 0,
-            \     'scrollback':      0,
-            \     'truncate':        0
-            \     }
-            \ }"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:tmuxcomplete#asyncomplete_source_options = {
+            "\ 'name':      'tmuxcomplete',
+            "\ 'whitelist': ['*'],
+            "\ 'config': {
+            "\     'splitmode':      'words',
+            "\     'filter_prefix':   1,
+            "\     'show_incomplete': 1,
+            "\     'sort_candidates': 0,
+            "\     'scrollback':      0,
+            "\     'truncate':        0
+            "\     }
+            "\ }"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Themes
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set background=dark
 set termguicolors
 "colorscheme dracula
-colorscheme space-vim-dark
+colorscheme onedark
 
 if exists('$TMUX')
   function! TmuxOrSplitSwitch(wincmd, tmuxdir)
@@ -687,21 +687,21 @@ set lazyredraw
  
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " tern
-autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
+"autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
 
 
 "Add extra filetypes
-let g:tern#filetypes = [
-                \ 'jsx',
-                \ 'javascript.jsx',
-                \ 'vue',
-                \ '...'
-                \ ]
+"let g:tern#filetypes = [
+                "\ 'jsx',
+                "\ 'javascript.jsx',
+                "\ 'vue',
+                "\ '...'
+                "\ ]
 "If you are using tern_for_vim, you also want to use the same tern command with deoplete-ternjs
 
 " Use tern_for_vim.
-let g:tern#command = ["tern"]
-let g:tern#arguments = ["--persistent"]
+"let g:tern#command = ["tern"]
+"let g:tern#arguments = ["--persistent"]
 
 " SOME fixes
 set synmaxcol=200
@@ -802,16 +802,16 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " add 180ms delay before the omni wrapper:
 "  'on_complete': ['ncm2#on_complete#delay', 180,
 "               \ 'ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
-au User Ncm2Plugin call ncm2#register_source({
-        \ 'name' : 'css',
-        \ 'priority': 9,
-        \ 'subscope_enable': 1,
-        \ 'scope': ['css','scss'],
-        \ 'mark': 'css',
-        \ 'word_pattern': '[\w\-]+',
-        \ 'complete_pattern': ':\s*',
-        \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
-        \ })
+"au User Ncm2Plugin call ncm2#register_source({
+        "\ 'name' : 'css',
+        "\ 'priority': 9,
+        "\ 'subscope_enable': 1,
+        "\ 'scope': ['css','scss'],
+        "\ 'mark': 'css',
+        "\ 'word_pattern': '[\w\-]+',
+        "\ 'complete_pattern': ':\s*',
+        "\ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
+        "\ })
 
 
 nmap <leader>. :TagbarToggle<cr>
@@ -947,5 +947,6 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+nnoremap <silent> <space>l  :<C-u>CocList<CR>
 
 let g:lsc_auto_map = v:true
